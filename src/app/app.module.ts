@@ -8,11 +8,14 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+import { AddTodoFormComponent } from './add-todo-form/add-todo-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddTodoFormComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,11 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    ToastrModule.forRoot({ 
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
 
   ],
   providers: [],

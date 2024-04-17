@@ -4,6 +4,7 @@ export class Todo{
     description!: string;
     completed!: boolean;
     createdAt!: string;
+    updatedAt?: string;
     dueDate!: string;
     priority?: Priority;
     subtasks?: SubTasks[];
@@ -11,7 +12,7 @@ export class Todo{
 }
 
 
-class SubTasks{
+export class SubTasks{
     title!: string
     completed!: boolean
 }
