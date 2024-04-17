@@ -10,12 +10,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { AddTodoFormComponent } from './add-todo-form/add-todo-form.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddTodoFormComponent
+    AddTodoFormComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
