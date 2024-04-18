@@ -1,0 +1,104 @@
+
+/* Container Styles */
+.container {
+    margin: 20px auto;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* List Item Styles */
+.list-group-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    list-style: none;
+
+}
+
+/* Checkbox Styles */
+.todo-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Completed Todo Styles */
+.todo-title.text-decoration-line-through {
+    color: #888;
+}
+
+/* Todo Details Styles */
+.todo-details {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+  }
+  
+  .todo-details span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .todo-details .todo-created {
+    color: #555;
+  }
+  
+  .todo-details .todo-priority {
+    color: #007bff; /* Change color based on priority level */
+  }
+  
+  .todo-details .todo-due {
+    color: #dc3545; /* Change color based on due date status */
+  }
+
+/* Todo Actions Styles */
+.todo-actions {
+    margin-top: 5px;
+}
+
+.todo-actions button {
+    margin-right: 5px;
+}
+
+/* Button Styles */
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-outline-secondary {
+    color: #333;
+    border: 1px solid #333;
+}
+
+.btn-outline-danger {
+    color: #d9534f;
+    border: 1px solid #d9534f;
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-danger:hover {
+    background-color: #eee;
+}
+
+/* Task Priority Styles */
+.task-high {
+    border-top: 2px solid #ff3b3b; /* Light red for high priority */
+    background-color: #f8e6e6;
+}
+
+.task-medium {
+    border-top: 2px solid #747df8; /* Light yellow for medium priority */
+    background-color: #ededf8;
+}
+
+.task-low {
+    border-top: 2px solid #76ffaf; /* Light blue for low priority */
+    background-color: #e5f3eb;
+}

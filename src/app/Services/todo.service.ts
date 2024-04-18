@@ -32,7 +32,7 @@ export class TodoService {
   }
 
   // Get a Todo with an Id
-  getTask(taskId: string): Observable<Todo | undefined> {
+  getTodo(taskId: string): Observable<Todo | undefined> {
     return this.firestore.collection('tasks').doc(taskId).get().pipe(
       map(taskSnapshot => taskSnapshot.exists ? taskSnapshot.data() as Todo : undefined),
       catchError(error => this.errorHandlerService.handleError(error)) 
@@ -60,14 +60,14 @@ export class TodoService {
   }
 
   // Delete a todo
-  deleteTask(todoId: string): Observable<void> {
+  deleteTodo(todoId: string): Observable<void> {
     return from(this.firestore.collection('todos').doc(todoId).delete()).pipe(
       catchError(error => this.errorHandlerService.handleError(error)) 
     );
   }
 
 
-  getTasksByStatus(priority: string): Observable<{ id: string, data: Todo }[]> {
+  getTasksByPriority(priority: string): Observable<{ id: string, data: Todo }[]> {
     return this.firestore.collection('todos', ref => ref.where('priority', '==', priority))
       .snapshotChanges().pipe(
         map(actions => actions.map(a => {

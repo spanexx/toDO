@@ -21,7 +21,8 @@ export class AddTodoFormComponent {
     this.todoForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl(''), 
-      priority: new FormControl('normal', Validators.required) 
+      priority: new FormControl('medium', Validators.required),
+      dueDate: new FormControl(''), 
     });
   }
 

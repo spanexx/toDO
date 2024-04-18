@@ -2,15 +2,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40vh;
     background-color: #f8f9fa;
+    padding: 20px;
+    margin: 20px
   }
 
 
 
 .todo-form {
     width: 50%;
-    margin: auto;
+    margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
     display: flex;

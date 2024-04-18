@@ -11,13 +11,17 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { AddTodoFormComponent } from './add-todo-form/add-todo-form.component';
 import { HomeComponent } from './home/home.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { FilterComponent } from './filter/filter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTodoFormComponent,
-    HomeComponent
+    HomeComponent,
+    TodoListComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
