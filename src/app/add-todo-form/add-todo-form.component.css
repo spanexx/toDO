@@ -1,67 +1,60 @@
-.container{
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    background-color: #f8f9fa;
-    height: 650px;
-    width: 600px;
-  }
-
+.container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 20px;
+  margin-right: 10px;
+}
 
 
 .todo-form {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    
-  }
-  
-  .form-group {
-    margin: 20px;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  textarea.form-control {
-    min-height: 100px;
-  }
-  
-  .form-error-message {
-    color: #dc3545;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
+  width: 100%;
+  min-width: 500px; 
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin: 10px 0; 
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+textarea.form-control {
+  min-height: 100px;
+}
+
+.button {
+  margin-top: 20px; /* Add space between form and button */
+}
+
+.btn-primary {
+  width: 100%; /* Ensure button takes full width */
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+      padding: 40px; 
+      max-width: 800px;
   }
 
-  .button{
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    margin-left: 10px;
+  .todo-form {
+      width: 100%; /* Reduce form width on larger screens */
+      max-width: 900px; /* Increase maximum width */
   }
-  
+}
+
+/* Allow the form to grow and shrink */
+.todo-form {
+  flex-grow: 1;
+  flex-shrink: 1;
+}

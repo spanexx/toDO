@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrl: './nav.component.css'
 })
-export class HeaderComponent {
+export class NavComponent {
   menuTrigger: any; 
   showMenu: boolean = false;
   logoUrl = '../../assets/logo.png';
@@ -25,5 +25,10 @@ export class HeaderComponent {
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
+  }
+
+  closeMenu(): void {
+    const checkbox = document.getElementById('active') as HTMLInputElement;
+    checkbox.checked = false;
   }
 }

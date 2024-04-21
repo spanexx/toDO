@@ -1,11 +1,9 @@
 .container {
     padding: 20px;
     display: flex;
-    background-color: rgb(255, 249, 245);
-    flex-direction: column;
     flex-wrap: wrap;
     animation: blinkCard 1s infinite alternate;
-
+    margin-top: 35px;
   }
   h2{
     color: red;
@@ -14,6 +12,8 @@
   .title {
     margin-bottom: 20px;
     font-size: 24px;
+    text-align: center;
+    width: 100%;
   }
   
   .card {
@@ -49,5 +49,29 @@
     }
     100% {
       opacity: 0.5;
+    }
+  }
+
+  .row {
+    display: flex; /* Or 'display: grid' for grid-based layout */
+    flex-wrap: wrap;
+  }
+  
+  .col-3 { 
+    flex: 0 0 25%; /* 4 columns by default */
+    max-width: 25%; 
+  }
+  
+  @media (max-width: 768px) {
+    .col-3 {
+      flex: 0 0 50%; /* 2 columns on medium screens */
+      max-width: 50%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .col-3 {
+      flex: 0 0 100%; /* 1 column on small screens */
+      max-width: 100%;
     }
   }

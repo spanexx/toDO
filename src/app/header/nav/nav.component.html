@@ -1,0 +1,11 @@
+<input type="checkbox" id="active" />
+<label for="active" class="menu-btn"><i class="fas fa-bars"></i></label>
+<div class="wrapper">
+  <ul >
+    <li *ngFor="let x of headerItems">
+        <a routerLink={{x.link}} (click)="closeMenu()">{{x.label}}</a>
+        <ul class="menu-links" *ngIf="x.label === 'Project Planner'"> 
+        </ul>
+    </li>
+  </ul>
+</div>

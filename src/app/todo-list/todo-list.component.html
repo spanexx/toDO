@@ -1,14 +1,17 @@
-<div class="filters">
-<app-search (searchTerm)="searchTasks($event)"></app-search> 
-
-<filter (filterChange)="filterByPriority($event)"></filter>
-</div>
-
-<div class="hpt">
-  <app-high-priority></app-high-priority>
-</div>
+<div class="body">
 
 <div class="container">
+  <div class="filters">
+    <div class="search">
+    <app-search (searchTerm)="searchTasks($event)"></app-search> 
+  </div>
+
+  <div class="filtered">
+    <filter (filterChange)="filterByPriority($event)"></filter>
+    </div>
+  </div>
+    
+    
   <ul class="list-group">
     <li
     *ngFor="let todo of filteredTodos"
@@ -52,7 +55,11 @@
     </li>
   </ul>
 </div>
-
+<div class="side-bar">
+  <h1>High Priority</h1>
+<app-high-priority [highPriorityTasks]="todos" [flexDirection]="'row'"></app-high-priority>
+</div>
+</div>
 <task-update-form *ngIf="selectedTodo && showModal" 
 [selectedTaskID]="selectedTodoId!" 
 [selectedTAsk]="selectedTodo"

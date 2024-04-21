@@ -1,21 +1,41 @@
 .container {
-    display: flex; /* Use flexbox for layout */
-    align-items: center; /* Center vertically */
-    justify-content: space-between; /* Distribute items evenly */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column; /* Change flex direction to column for smaller screens */
+    align-items: center;
     padding-top: 40px;
-    width: 100%; 
-
+    width: 100%;
 }
 
 .background-image {
-    max-width: 50%; 
+    max-width: 100%; /* Ensure the image takes up the full width of its container */
+    height: auto; /* Maintain aspect ratio */
 }
 
 .form-container {
-    flex-grow: 1; /* Allow the form container to grow */
-    margin-left: 20px; /* Add some space between the image and form */
+    margin-top: 20px; /* Add some space between the image and form */
 }
 
 .add-todo-form {
-    width: 100%; /* Take up the entire width of the container */
+    width: 100%;
+    max-width: 400px; /* Set a maximum width for the form */
+}
+
+/* Media query for smaller screens */
+@media screen and (min-width: 768px) {
+    .container {
+        flex-direction: row; /* Change flex direction back to row for larger screens */
+    }
+
+    .background-image {
+        max-width: 50%; /* Resize image for larger screens */
+    }
+
+    .form-container {
+        margin: 0 20px; /* Reset margin for larger screens */
+    }
+}
+
+@media screen and (min-width: 768px){
+    
 }

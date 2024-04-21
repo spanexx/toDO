@@ -1,8 +1,7 @@
-<div class="container">
-  <h2 class="title">High Priority Tasks</h2>
+<div *ngIf="highPriorityTasks.length >= 1" class="container" [style.flex-direction]="flexDirection">
 
   <div class="row">
-    <div class="col-3" *ngFor="let todo of todos.slice(0, 4)">
+    <div *ngFor="let todo of todos.slice(0, 4)">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{ todo.title }}</h5>
@@ -14,3 +13,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #notask>
+<h3>No High Priority tasks</h3>
+</ng-template>

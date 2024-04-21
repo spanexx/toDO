@@ -12,6 +12,7 @@ import { Observable, of } from 'rxjs';
 export class HighPriorityComponent {
   @Input() highPriorityTasks!: Todo[];
   todos: Todo[] = []; // Initialize todos as an empty array
+  @Input() flexDirection: string = 'column'; // Default flex direction is 'row'
 
   constructor(private todoService: TodoService) { 
     this.loadHighPriorityTodos();

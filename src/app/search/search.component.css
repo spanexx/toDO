@@ -1,24 +1,19 @@
-/* Search Container */
+/* Search Container Styles */
 .search-container {
-    display: flex; 
-    align-items: center; 
-    width: 400px; 
-    justify-content: center;
+  width: 100%;
+}
+
+.search-input {
+  width: 95%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .search-container {
+    max-width: 300px; /* Adjust as needed */
+    margin-right: 20px; /* Add some spacing between the search container and other elements */
   }
-  
-  /* Search Input Field */
-  .search-input {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px; 
-    width: 100%; 
-    box-sizing: border-box; 
-  }
-  
-  /* Optional: Focus Style */
-  .search-input:focus {
-    outline: none; 
-    border-color: #5577cc; 
-    box-shadow: 0 0 5px rgba(81, 203, 238, 0.4); 
-  }
-  
+}

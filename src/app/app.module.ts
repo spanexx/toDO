@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar'; 
+import { MatMenuModule } from '@angular/material/menu'; 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
+import { CreateProjectComponent } from './create-project/create-project.component';
+import { NavComponent } from './header/nav/nav.component';
 
 
 @NgModule({
@@ -34,7 +41,9 @@ import { MatInputModule } from '@angular/material/input';
     TaskUpdateFormComponent,
     HeaderComponent,
     SearchComponent,
-    HighPriorityComponent
+    HighPriorityComponent,
+    CreateProjectComponent,
+    NavComponent
 
   ],
   imports: [
@@ -54,6 +63,10 @@ import { MatInputModule } from '@angular/material/input';
     MatSlideToggleModule,
     MatButtonModule,
     MatInputModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    TooltipModule.forRoot()
 
   ],
   providers: [
