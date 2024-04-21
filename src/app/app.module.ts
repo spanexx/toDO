@@ -13,6 +13,15 @@ import { AddTodoFormComponent } from './add-todo-form/add-todo-form.component';
 import { HomeComponent } from './home/home.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { FilterComponent } from './filter/filter.component';
+import { TaskUpdateFormComponent } from './task-update-form/task-update-form.component';
+import { HeaderComponent } from './header/header.component';
+import { RouterLink } from '@angular/router';
+import { SearchComponent } from './search/search.component';
+import { HighPriorityComponent } from './high-priority/high-priority.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -21,7 +30,12 @@ import { FilterComponent } from './filter/filter.component';
     AddTodoFormComponent,
     HomeComponent,
     TodoListComponent,
-    FilterComponent
+    FilterComponent,
+    TaskUpdateFormComponent,
+    HeaderComponent,
+    SearchComponent,
+    HighPriorityComponent
+
   ],
   imports: [
     BrowserModule,
@@ -36,9 +50,15 @@ import { FilterComponent } from './filter/filter.component';
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    RouterLink,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatInputModule,
 
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,21 @@
+.container {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center vertically */
+    justify-content: space-between; /* Distribute items evenly */
+    padding-top: 40px;
+    width: 100%; 
+
+}
+
+.background-image {
+    max-width: 50%; 
+}
+
+.form-container {
+    flex-grow: 1; /* Allow the form container to grow */
+    margin-left: 20px; /* Add some space between the image and form */
+}
+
+.add-todo-form {
+    width: 100%; /* Take up the entire width of the container */
+}

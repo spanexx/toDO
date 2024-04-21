@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Priority, Todo } from '../Models/Todo';
 import { TodoService } from '../Services/todo.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'todo-list',
@@ -13,7 +14,10 @@ export class TodoListComponent {
   filteredTodos!: Todo[];
   selectedPriority = 'all'; 
   selectedTodoId = ''
+  searchTerm = '';
   showModal: boolean = false;
+  highPriorityTasks: Todo[] = []; // Define highPriorityTasks here
+
 
 
   constructor(private todoService: TodoService) { }
@@ -22,21 +26,46 @@ export class TodoListComponent {
     this.loadTodo();
   }
 
-  loadTodo() {
-    if (this.selectedPriority === 'all') {
-      // Fetch all tasks (you might already have a method for this)
-      this.todoService.getTodos().subscribe(todo => { 
-        this.todos = todo
-        this.filteredTodos = todo
-      });
-    } else {
-      this.todoService.getTasksByPriority(this.selectedPriority).subscribe(todos => {
-        this.todos = todos.map(task => task.data); 
-        this.filteredTodos = todos.map(todo => todo.data);
-      });
-    }
+  searchTasks(searchTerm: string) {
+    this.searchTerm = searchTerm;
+    this.loadTodo();
   }
 
+  loadTodo() {
+    // Combined logic for search and priority filtering
+    let filteredTasks: Observable<Todo[]>; 
+  
+    if (this.selectedPriority === 'all' && !this.searchTerm) { 
+      // Fetch all tasks, when there's no priority filter or a search term
+      filteredTasks = this.todoService.getTodos();
+    } else {
+      // Priority or search term exists, filter accordingly
+      if (this.selectedPriority !== 'all') {
+        filteredTasks = this.todoService.getTasksByPriority(this.selectedPriority).pipe(
+          map(todos => todos.map(task => task.data))
+        );
+      } else { 
+        const lowercaseSearchTerm = this.searchTerm.toLowerCase();  
+
+        filteredTasks = this.todoService.getTodos().pipe(
+          map(todos => {
+            this.filteredTodos = todos.filter(todo => 
+              todo.title.toLowerCase().includes(lowercaseSearchTerm)
+            );
+            return this.filteredTodos;
+            
+          })
+        );
+      }
+      console.log(this.searchTerm);
+    }
+
+      // Subscribe to the observable and update `todos` and `filteredTodos`
+  filteredTasks.subscribe(todos => {
+    this.todos = todos; 
+    this.filteredTodos = todos; 
+  });
+}
 
   onSelect(todo: Todo) {
     this.selectedTodo = todo;
@@ -62,13 +91,12 @@ export class TodoListComponent {
   }
 
   editTodo(todoId: string, task: Todo) {
-    this.todoService.getTodo(todoId).subscribe(task => {
-      this.selectedTodo = task;
-      this.selectedTodoId = todoId;
-      this.showModal = true;
+    this.selectedTodo = task;
+    this.selectedTodoId = todoId;
+    this.showModal = true;
 
-    })
   }
+  
 
   getTodoPriority(task: Todo): string {
     if (task.priority === Priority.HIGH) {

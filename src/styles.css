@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 /* Universal styles */
@@ -16,3 +16,5 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Add more universal styles here */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

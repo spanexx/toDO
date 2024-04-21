@@ -13,6 +13,9 @@ import { ErrorHandleService } from './error-handle.service';
   providedIn: 'root'
 })
 export class TodoService {
+  getByPriorityAndDate() {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private firestore: AngularFirestore, private errorHandlerService: ErrorHandleService) { 
     
@@ -78,6 +81,8 @@ export class TodoService {
         catchError(error => this.errorHandlerService.handleError(error)) 
       );
   }
+
+
 
 
   //SubTasks 

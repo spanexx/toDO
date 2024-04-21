@@ -1,0 +1,21 @@
+<header class="header">
+    <div class="logo-img">
+    <img routerLink="/" [src]="logoUrl" [alt]="name" class="logo">
+</div>
+
+<div>
+        <i (click)="toggleMenu()" class="fas fa-bars"></i>
+    </div>
+    <nav class="menu" [class.active]="showMenu">
+        <ul class="menu">
+            <li *ngFor="let x of headerItems" class="menu-item">
+                <a routerLink={{x.link}}>{{x.label}}</a>
+                <ul class="menu-links" *ngIf="x.label === 'Project Planner'"> 
+                    <li *ngFor="let project of projects">
+                        <a routerLink={{project.link}}>{{project.label}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
