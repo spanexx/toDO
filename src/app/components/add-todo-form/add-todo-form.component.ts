@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TodoService } from '../Services/todo.service';
-import { Todo } from '../Models/Todo';
 import { Router } from '@angular/router';
+import { TodoService } from '../../Services/todo.service';
+import { Todo } from '../../Models/Todo';
 
 @Component({
   selector: 'app-add-todo-form',

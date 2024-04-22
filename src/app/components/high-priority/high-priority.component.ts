@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Todo, Priority } from '../Models/Todo'; // Import Priority enum
-import { TodoService } from '../Services/todo.service';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { Priority, Todo } from '../../Models/Todo';
+import { TodoService } from '../../Services/todo.service';
 
 @Component({
   selector: 'app-high-priority',
