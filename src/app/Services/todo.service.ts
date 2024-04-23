@@ -5,7 +5,6 @@ import { Observable, from, throwError } from 'rxjs';
 import { catchError, map, } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
-import { ToastrService } from 'ngx-toastr';
 import { ErrorHandleService } from './error-handle.service';
 
 
@@ -43,16 +42,14 @@ export class TodoService {
   }
 
   // Create a new todo
-  createTodo(todo: Todo): Observable<Todo> {
+  createTodo(todo: Todo): Observable<string> {
     todo.createdAt = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    return from(this.firestore.collection('todos').add(todo)).pipe( 
-      map((action) => { 
-        const id = action.id;
-        return { id, ...todo };
-      }),
+  
+    return from(this.firestore.collection('users').add(todo)).pipe( 
+      map(action => action.id), // Return just the ID
       catchError(error => this.errorHandlerService.handleError(error)) 
     );
-  }
+  } 
 
   // Update a todo
   updateTodo(todoId: string, todo: Todo): Observable<void> {

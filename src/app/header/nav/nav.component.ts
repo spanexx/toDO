@@ -16,7 +16,7 @@ export class NavComponent {
     { label: 'Tasks', link: 'todo-list' },
     { label: 'Task Management', link: '/' },
     { label: 'Project Planner', link: '/' },
-    { label: 'Login', link: '/' },
+    { label: 'Login', link: '/login' },
   ];
   projects: any[] = [ // Declare the 'projects' variable as an array
     { label: 'Create Project', link: '/create-project'},

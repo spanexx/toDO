@@ -1,68 +1,88 @@
 <div class="body">
-
-<div class="container">
-  <div class="filters">
-    <div class="search">
-    <app-search (searchTerm)="searchTasks($event)"></app-search> 
-  </div>
-
-  <div class="filtered">
-    <filter (filterChange)="filterByPriority($event)"></filter>
-    </div>
-  </div>
-    
-    
-  <ul class="list-group">
-    <li
-    *ngFor="let todo of filteredTodos"
-      class="list-group-item"
-      [ngClass]="getTodoPriority(todo)"
-    >
-
-    <div class="todo-item" > 
-      <input type="checkbox" 
-             (change)="editTodo(todo.id!, todo)" 
-             [checked]="todo.completed" />
-
-      <span class="todo-title" 
-            [class.text-decoration-line-through]="todo.completed">
-        {{ todo.title }}
-      </span>
-        <div class="todo-details" *ngIf="!todo.completed">
-          <span class="todo-created">Created At: {{ todo.createdAt }}</span>
-          <span *ngIf="todo.updatedAt" class="todo-created">Udated At: {{ todo.updatedAt }}</span>
-
-          <span class="todo-priority">Priority: {{ todo.priority }}</span>
-          <span class="todo-due"
-            >Due: {{ todo.dueDate | date : "medium" }}</span
-          >
-        </div>
-        <div class="todo-actions">
-          <button
-            class="btn btn-sm btn-outline-secondary"
-            (click)="editTodo(todo.id!, todo)"
-          >
-            Update
-          </button>
-          <button
-            class="btn btn-sm btn-outline-danger"
-            (click)="deleteTask(todo.id!)"
-          >
-            Delete
-          </button>
-        </div>
+  <div class="container">
+    <div class="filters">
+      <div class="search">
+        <app-search (searchTerm)="searchTasks($event)"></app-search>
       </div>
-    </li>
-  </ul>
+
+      <div class="filtered">
+        <filter (filterChange)="filterByPriority($event)"></filter>
+      </div>
+    </div>
+
+    <ng-container *ngIf="filteredTodos && filteredTodos.length > 0; else noTasksTemplate">
+      <ul class="list-group">
+        <li
+          *ngFor="let todo of filteredTodos"
+          class="list-group-item"
+          [ngClass]="getTodoPriority(todo)"
+        >
+          <div class="todo-item">
+            <input
+              type="checkbox"
+              (change)="editTodo(todo.id!, todo)"
+              [checked]="todo.completed"
+            />
+
+            <span
+              class="todo-title"
+              [class.text-decoration-line-through]="todo.completed"
+            >
+              {{ todo.title }}
+            </span>
+            <div class="todo-details" *ngIf="!todo.completed">
+              <span class="todo-created">Created At: {{ todo.createdAt }}</span>
+              <span *ngIf="todo.updatedAt" class="todo-created"
+                >Udated At: {{ todo.updatedAt }}</span
+              >
+
+              <span class="todo-priority">Priority: {{ todo.priority }}</span>
+              <span class="todo-due"
+                >Due: {{ todo.dueDate | date : "medium" }}</span
+              >
+            </div>
+            <div class="todo-actions">
+              <button
+                class="btn btn-sm btn-outline-secondary"
+                (click)="editTodo(todo.id!, todo)"
+              >
+                Update
+              </button>
+              <button
+                class="btn btn-sm btn-outline-danger"
+                (click)="deleteTask(todo.id!)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+
+    <ng-template #noTasksTemplate>
+      <div class="no-tasks">
+        <h3>No tasks found</h3>
+      </div>
+    </ng-template>
+  </div>
+
+
+  
+
+
+  <div class="side-bar">
+    <h1>High Priority</h1>
+    <app-high-priority
+      [highPriorityTasks]="todos"
+      [flexDirection]="'row'"
+    ></app-high-priority>
+  </div>
 </div>
-<div class="side-bar">
-  <h1>High Priority</h1>
-<app-high-priority [highPriorityTasks]="todos" [flexDirection]="'row'"></app-high-priority>
-</div>
-</div>
-<task-update-form *ngIf="selectedTodo && showModal" 
-[selectedTaskID]="selectedTodoId!" 
-[selectedTAsk]="selectedTodo"
-[showModal]="showModal" 
-(closeModalEvent)="closeModal()"
+<task-update-form
+  *ngIf="selectedTodo && showModal"
+  [selectedTaskID]="selectedTodoId!"
+  [selectedTAsk]="selectedTodo"
+  [showModal]="showModal"
+  (closeModalEvent)="closeModal()"
 ></task-update-form>

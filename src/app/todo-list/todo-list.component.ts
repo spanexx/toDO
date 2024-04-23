@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Priority, Todo } from '../Models/Todo';
 import { TodoService } from '../Services/todo.service';
 import { Observable, map } from 'rxjs';
+import { ErrorHandleService } from '../Services/error-handle.service'; // Import ErrorHandleService
 
 @Component({
   selector: 'todo-list',
@@ -18,9 +19,10 @@ export class TodoListComponent {
   showModal: boolean = false;
   highPriorityTasks: Todo[] = []; // Define highPriorityTasks here
 
-
-
-  constructor(private todoService: TodoService) { }
+  constructor(
+    private todoService: TodoService,
+    private errorHandleService: ErrorHandleService // Inject ErrorHandleService
+  ) { }
 
   ngOnInit() {
     this.loadTodo();
@@ -32,57 +34,54 @@ export class TodoListComponent {
   }
 
   loadTodo() {
-    // Combined logic for search and priority filtering
     let filteredTasks: Observable<Todo[]>; 
   
     if (this.selectedPriority === 'all' && !this.searchTerm) { 
-      // Fetch all tasks, when there's no priority filter or a search term
       filteredTasks = this.todoService.getTodos();
     } else {
-      // Priority or search term exists, filter accordingly
       if (this.selectedPriority !== 'all') {
         filteredTasks = this.todoService.getTasksByPriority(this.selectedPriority).pipe(
           map(todos => todos.map(task => task.data))
         );
       } else { 
         const lowercaseSearchTerm = this.searchTerm.toLowerCase();  
-
         filteredTasks = this.todoService.getTodos().pipe(
           map(todos => {
             this.filteredTodos = todos.filter(todo => 
               todo.title.toLowerCase().includes(lowercaseSearchTerm)
             );
             return this.filteredTodos;
-            
           })
         );
       }
-      console.log(this.searchTerm);
     }
 
-      // Subscribe to the observable and update `todos` and `filteredTodos`
-  filteredTasks.subscribe(todos => {
-    this.todos = todos; 
-    this.filteredTodos = todos; 
-  });
-}
+    filteredTasks.subscribe(
+      todos => {
+        this.todos = todos; 
+        this.filteredTodos = todos; 
+      },
+      error => this.errorHandleService.handleError(error) // Call handleError method on error
+    );
+  }
 
   onSelect(todo: Todo) {
     this.selectedTodo = todo;
   }
+
   filterByPriority(priority: string) {
     this.selectedPriority = priority;
     this.loadTodo(); 
   }
 
-
-  deleteTask(todoId: string ) {
+  deleteTask(todoId: string) {
     this.todoService.deleteTodo(todoId).subscribe({
       next: () => {
         this.todos = this.todos.filter(todo => todo.id !== todoId);
       },
       error: (error: any) => {
         console.error("Error deleting task:", error);
+        this.errorHandleService.handleError(error); // Call handleError method on error
       },
       complete: () => {
         console.log("Task deleted successfully!");
@@ -94,9 +93,7 @@ export class TodoListComponent {
     this.selectedTodo = task;
     this.selectedTodoId = todoId;
     this.showModal = true;
-
   }
-  
 
   getTodoPriority(task: Todo): string {
     if (task.priority === Priority.HIGH) {
@@ -113,5 +110,4 @@ export class TodoListComponent {
   closeModal() {
     this.showModal = false;
   }
-
 }

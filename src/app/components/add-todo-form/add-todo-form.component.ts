@@ -28,12 +28,12 @@ export class AddTodoFormComponent {
 
   onSubmit() {
     if (this.todoForm.valid) {
-      const newTask = this.todoForm.value; 
+      const newTask: Todo = this.todoForm.value; 
   
       this.todoService.createTodo(newTask).subscribe({
 
-        next: (task: Todo) => { 
-          console.log("Task added successfully:", task);
+        next: (taskId: string) => { 
+          newTask.id = taskId
           this.router.navigate(['/']);
           this.todoForm.reset();
           this.todoForm.get('priority')?.setValue('low'); 

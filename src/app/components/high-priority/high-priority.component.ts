@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { catchError, map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Priority, Todo } from '../../Models/Todo';
 import { TodoService } from '../../Services/todo.service';
+import { ErrorHandleService } from '../../Services/error-handle.service'; // Import ErrorHandleService
 
 @Component({
   selector: 'app-high-priority',
@@ -11,22 +11,28 @@ import { TodoService } from '../../Services/todo.service';
 })
 export class HighPriorityComponent {
   @Input() highPriorityTasks!: Todo[];
-  todos: Todo[] = []; // Initialize todos as an empty array
-  @Input() flexDirection: string = 'column'; // Default flex direction is 'row'
+  todos: Todo[] = []; 
+  @Input() flexDirection: string = 'column'; 
 
-  constructor(private todoService: TodoService) { 
+  constructor(
+    private todoService: TodoService,
+    private errorHandleService: ErrorHandleService 
+  ) { 
     this.loadHighPriorityTodos();
   }
 
   loadHighPriorityTodos() {
     this.todoService.getTodos().pipe(
       map(todos => todos.filter(todo => todo.priority === Priority.HIGH))
-    ).subscribe((todos: Todo[]) => {
-      this.todos = todos;
-    }, (error) => {
-      console.error('Error loading high priority todos:', error);
-      this.todos = [];
+    ).subscribe({
+      next: (todos: Todo[]) => {
+        this.todos = todos;
+      },
+      error: (error) => {
+        console.error('Error loading high priority todos:', error);
+        this.errorHandleService.handleError(error); 
+        this.todos = [];
+      }
     });
   }
 }
-

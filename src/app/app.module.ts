@@ -29,6 +29,11 @@ import { FilterComponent } from './components/filter/filter.component';
 import { HighPriorityComponent } from './components/high-priority/high-priority.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
 import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.component';
+import { UserComponent } from './components/user/user.component';
+import { LogInComponent } from './components/log-in/log-in.component';
+import { SignupComponent } from './components/sign-up/sign-up.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserInterceptor } from './interceptors/user';
 
 
 @NgModule({
@@ -43,7 +48,10 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
     SearchComponent,
     HighPriorityComponent,
     CreateProjectComponent,
-    NavComponent
+    NavComponent,
+    UserComponent,
+    LogInComponent,
+    SignupComponent
 
   ],
   imports: [
@@ -55,8 +63,8 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
     FormsModule,
     CommonModule,
     ToastrModule.forRoot({ 
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
+      timeOut: 4000,
+      positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
     RouterLink,
@@ -66,11 +74,16 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
     MatToolbarModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
 
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

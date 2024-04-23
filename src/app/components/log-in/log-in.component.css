@@ -1,0 +1,88 @@
+.login-form {
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    overflow: hidden; /* Ensure rounded corners display properly */
+  }
+  
+  .login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .login-form div {
+    margin-bottom: 15px;
+  }
+  
+  .login-form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .login-form button[type="submit"] {
+    background-color: #00bcd4; /* Example color - change as needed */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .login-form button[type="submit"]:hover {
+    background-color: #008ba3; /* Slightly darker blue on hover */
+  }
+  
+  .login-form button[type="submit"]:disabled {
+    background-color: #ccc; /* Grayed out when disabled */
+    cursor: not-allowed;
+  }
+  
+  .error-message {
+    color: red;
+    margin-bottom: 10px;
+  }
+  .signup{
+    margin-top: 8px;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .login-form {
+      padding: 20px;
+    }
+    
+    .login-form h2 {
+      font-size: 20px;
+    }
+    
+    .login-form input[type="email"],
+    .login-form input[type="password"] {
+      padding: 12px;
+      font-size: 14px;
+    }
+    
+    .login-form button[type="submit"] {
+      padding: 12px;
+      font-size: 16px;
+    }
+  }
+  
