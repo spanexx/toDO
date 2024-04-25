@@ -45,7 +45,7 @@ export class TodoService {
   createTodo(todo: Todo): Observable<string> {
     todo.createdAt = new Date().toISOString().slice(0, 19).replace('T', ' ');
   
-    return from(this.firestore.collection('users').add(todo)).pipe( 
+    return from(this.firestore.collection('todos').add(todo)).pipe( 
       map(action => action.id), // Return just the ID
       catchError(error => this.errorHandlerService.handleError(error)) 
     );

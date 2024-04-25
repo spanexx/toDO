@@ -32,8 +32,10 @@ import { AddTodoFormComponent } from './components/add-todo-form/add-todo-form.c
 import { UserComponent } from './components/user/user.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignupComponent } from './components/sign-up/sign-up.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserInterceptor } from './interceptors/user';
+import { LoaderComponent } from './utility/loader/loader.component';
+import { SnackbarComponent } from './utility/snackbar/snackbar.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { UserInterceptor } from './interceptors/user';
     NavComponent,
     UserComponent,
     LogInComponent,
-    SignupComponent
+    SignupComponent,
+    LoaderComponent,
+    SnackbarComponent
 
   ],
   imports: [
@@ -75,6 +79,7 @@ import { UserInterceptor } from './interceptors/user';
     BrowserAnimationsModule,
     MatMenuModule,
     TooltipModule.forRoot(),
+    HttpClientModule
 
   ],
   providers: [
