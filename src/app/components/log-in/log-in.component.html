@@ -1,6 +1,7 @@
 <div class="login-form">
     <h2>Login</h2>
-  
+    <app-loader [isLoading]="isLoading"></app-loader>
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div>
         <label for="email">Email:</label>
@@ -18,5 +19,7 @@
       
       <p class="signup">Don't have an account? <a routerLink="/signup">Sign Up</a></p>
     </form>
+    <app-snackbar [SuccessMessage]="successMessage" [isVisible]="isError || isSuccess" [ErrorMessage]="errorMessage" *ngIf="isError || isSuccess"></app-snackbar>
+
   </div>
   

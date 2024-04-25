@@ -33,7 +33,7 @@ import { UserComponent } from './components/user/user.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { SignupComponent } from './components/sign-up/sign-up.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { UserInterceptor } from './interceptors/user';
+// import { UserInterceptor } from './interceptors/user';
 import { LoaderComponent } from './utility/loader/loader.component';
 import { SnackbarComponent } from './utility/snackbar/snackbar.component';
 
@@ -84,11 +84,11 @@ import { SnackbarComponent } from './utility/snackbar/snackbar.component';
   ],
   providers: [
     provideAnimationsAsync(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: UserInterceptor,
-      multi: true
-    }
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: UserInterceptor,
+    //   multi: true
+    // }
   ],
   bootstrap: [AppComponent]
 })

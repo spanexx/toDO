@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
   styleUrl: './log-in.component.css'
 })
 export class LogInComponent implements OnInit {
-
+  isLoading: boolean = false; 
   loginForm!: FormGroup;
   errorMessage: string = '';
+  successMessage: string = '';
+  isError: boolean = false;
+  isSuccess: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,15 +26,33 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
+    const { email, password } = this.loginForm.value;
 
-    this.authService.login(email, password)
-      .then(() => {
+    this.isLoading = true;
+
+    this.authService.login(email, password).subscribe({
+      next: (data)=>{
+        this.isLoading = false;
+        this.isSuccess = true;
+        this.successMessage = "Successfully signed in"
         this.router.navigate(['/']);
-      })
-      .catch(error => {
-        this.errorMessage = error.message; 
-      });
+      },
+      error:(errMsg)=>{
+        this.errorMessage = "ERROR: " + errMsg;
+          this.isLoading = false;
+          this.isError = true;
+  
+          this.hideSnackBar();
+
+      }
+    })
+      
+  }
+
+  hideSnackBar() {
+    setTimeout(() => {
+      this.isError = false;
+      this.isSuccess = false;
+    }, 3000);
   }
 }

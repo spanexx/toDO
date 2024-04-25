@@ -14,7 +14,9 @@ export class SignupComponent implements OnInit {
   isLoading: boolean = false; 
   signupForm!: FormGroup;
   errorMessage: string = '';
+  successMessage: string = '';
   isError: boolean = false;
+  isSuccess: boolean = false;
 
   constructor(private userService: UserService,
               private authService: AuthService,
@@ -37,7 +39,28 @@ export class SignupComponent implements OnInit {
 
       this.authService.signup(email, password).subscribe({
         next: (response) => {
+
+          const newUser: User = {
+            email: email,
+            displayName: displayName,
+            // Add other properties if needed
+          };
+          // this.userService.createUser(newUser).subscribe(
+          //   (userId: string) => {
+          //     console.log('User created with ID:', userId);
+          //   },
+          //   (error) => {
+          //     console.error('Error creating user:', error);
+          //   }
+          // );
+          
           this.isLoading = false;
+          this.isSuccess = true;
+          this.successMessage = "Successfully signed up"
+          this.hideSnackBar();
+          this.router.navigate(['/']);
+
+
         },
         error: (errMsg) => {
           this.errorMessage = "ERROR: " + errMsg;
@@ -54,6 +77,7 @@ export class SignupComponent implements OnInit {
   hideSnackBar() {
     setTimeout(() => {
       this.isError = false;
+      this.isSuccess = false;
     }, 3000);
   }
   

@@ -7,7 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class SnackbarComponent {
   @Input() isVisible: boolean = false;
-  @Input() message: string = '';
+  @Input() ErrorMessage: string = '';
+  @Input() SuccessMessage: string = '';
 
   constructor() { }
 }

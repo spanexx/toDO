@@ -5,3 +5,5 @@ export interface AuthResponse{
     expiresIn: string;
     localId: string;
 }
+
+export const APi = 'AIzaSyAg9m4aDi30zsSKCQr91sFcsKgxAVucR1I'

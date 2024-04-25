@@ -22,7 +22,7 @@
         <button type="submit" [disabled]="!signupForm.valid">Sign Up</button>
       </form>
   
-      <app-snackbar [isVisible]="isError" [message]="errorMessage" *ngIf="isError"></app-snackbar>
+      <app-snackbar [SuccessMessage]="successMessage" [isVisible]="isError || isSuccess" [ErrorMessage]="errorMessage" *ngIf="isError || isSuccess"></app-snackbar>
       <p>Already have an account? <a routerLink="/login">Login</a></p>
     </div>
   </div>
