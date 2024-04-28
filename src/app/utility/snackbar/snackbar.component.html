@@ -1,5 +1,6 @@
-<div class="snackbar" *ngIf="isVisible">
+<div class="snackbar" >
    <div class="error" *ngIf="ErrorMessage" >{{ ErrorMessage }}</div> 
    <div class="success" *ngIf="SuccessMessage">{{ SuccessMessage }}</div>
+   <div class="welcomeMessage" *ngIf="message">{{message}}</div>
   </div>
   

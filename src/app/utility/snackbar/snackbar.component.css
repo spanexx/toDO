@@ -23,3 +23,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px; /* Add some space between messages */
 }
+
+
+.welcomeMessage {
+  background-color: #6495ed; 
+  padding: 20px;
+  border-radius: 5px;
+  color: whitesmoke;
+
+}

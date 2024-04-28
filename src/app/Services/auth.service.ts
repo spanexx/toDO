@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'; 
-import { Subject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
+import { catchError, switchMap, tap } from 'rxjs/operators';
 import { APi, AuthResponse } from '../Models/AuthREsponse';
 import { NewUser } from '../Models/User';
 
@@ -11,7 +11,9 @@ import { NewUser } from '../Models/User';
 })
 export class AuthService {
   errorMessage = '';
-  user = new Subject<NewUser>();
+  user = new BehaviorSubject<NewUser | null>(null);
+  private loggedInSubject: Subject<void> = new Subject<void>();
+
   
   constructor(
     private afAuth: AngularFireAuth,
@@ -58,6 +60,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     const data = { email, password, returnSecureToken: true };
+    this.loggedInSubject.next();
 
     return this.http.post<AuthResponse>(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${APi}`, data
@@ -80,5 +83,10 @@ export class AuthService {
         this.handleCreateUser(data);
       })
     );
+  }
+
+  onLogin(): Observable<void> {
+    return this.loggedInSubject.asObservable()
+    
   }
 }
